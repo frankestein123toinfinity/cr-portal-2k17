@@ -1,0 +1,22 @@
+<div ng-show="showLeaderboardDetails">
+	<br><br>
+	<div class="row">
+		<div class="col s6">
+			<a href="/home/leaderboard/main" class="btn indigo accent-4 hoverable center" style="width: 100%;"><i class="fa fa-trophy"></i>&nbsp;&nbsp;&nbsp;Main leaderboard</a> 
+		</div>
+		<div class="col s6">
+			<a href="/home/leaderboard/sub" class="btn indigo accent-4 hoverable center" style="width: 100%;"><i class="fa fa-trophy"></i>&nbsp;&nbsp;&nbsp;Fortnightly leaderboard</a>
+		</div>
+	</div>
+
+	<div ui-view></div>
+	<br>
+	<br>
+	<br>
+</div>
+
+<div ng-hide="showLeaderboardDetails">
+  	<div class="progress blue lighten-3">
+    	<div class="indeterminate blue darken-1"></div>
+	</div>
+</div>

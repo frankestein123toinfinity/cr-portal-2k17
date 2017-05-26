@@ -1,0 +1,72 @@
+<div ng-show="showUpdatePage">
+	
+	<form name="userDetails" novalidate>
+	<h4 class="center">Update your details: </h4>
+		<div class="input-field">
+			<input  type="text" name="name" disabled="disabled" ng-model="user.name" required>
+			<label for="name">Name</label>
+		</div>
+		
+		<div class="input-field">
+			<input type="email" name="email" ng-model="user.email" required>
+			<label for="Email">Email</label>	
+		</div>
+		
+		<div class="input-field">
+			<input type="text" name="city" ng-model="user.city" required> 
+			<label for="city">City</label>
+		</div>
+		
+		<div class="input-field">
+			<input type="text" name="college" ng-model="user.college" required>	
+			<label for="college">College:</label>
+		</div>
+		
+		<div class="input-field">
+			<input type="text" name="phone" ng-model="user.phone" required>
+			<label for="phone">Your mobile number</label>			
+		</div>
+
+		<div class="input-field">
+			<input type="text" name="whatsapp" ng-model="user.whatsapp" required>
+			<label for="whatsapp">Whatsapp number</label>
+		</div>
+
+		<div class="input-field">
+			<input type="text" name="address" ng-model="user.address" required>
+			<label>Postal address</label>
+		</div>
+
+		<div class="input-field">
+			<input type="text" name="zipcode" ng-model="user.zipcode" required>
+			<label for="">Zipcode</label>
+		</div>
+		
+		<div class="input-field">
+			<select name="year" id="year" ng-model="user.year" required material-select watch>
+				<option value="First" selected="selected">First</option>
+				<option value="Second">Second</option>
+				<option value="Third">Third</option>
+				<option value="Fourth">Fourth</option>
+				<option value="Fifth">Fifth</option>
+			</select>
+			<label for="passingYear">Year of study</label>
+		</div>
+		<br><br>
+		<div class="row">
+			<div class="col s6">
+				<button ng-class="{disabled : userDetails.$invalid||invalidPhone()||invalidWhatsapp()}" ng-click="saveDetails()" class="btn indigo accent-3 center" style="width: 100%" ng-disabled="userDetails.$invalid || invalidPhone()||invalidWhatsapp()"><i class="fa fa-pencil"></i>&nbsp;&nbsp;&nbsp;Update details</button>				
+			</div>
+			<div class="col s6">
+				<button class="btn red darken-1" ng-click="goHome()" style="width: 100%"><i class="fa fa-home"></i>&nbsp;&nbsp;&nbsp;Back to home!</button>
+			</div>
+		</div>
+	</form>
+	<br>
+</div>
+
+<div ng-hide="showUpdatePage">
+	<div class="progress blue lighten-3">
+	    <div class="indeterminate blue darken-1"></div>
+	</div>
+</div>

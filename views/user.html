@@ -1,0 +1,29 @@
+<div ng-show="showDashboard">
+	
+	<h4 class="center">Share our posts and win prizes!</h4>
+	<div class="center flow-text">Share our facebook posts to help increase our reach and to win awesome prizes every fortnight!</div><br>
+	<div class="container">
+		<div ng-repeat="post in fbposts">
+			<div class="card hoverable">
+				<div class="card-image center">
+					<a href="{{post.permalink_url}}" target="_blank" tooltipped data-delay="50" data-position="left" data-tooltip="Open this post in a new tab">
+						<img class="responsive-img" ng-src="{{post.full_picture}}" alt="FB_post">
+					</a>
+					<div class="card-content">
+						<p>{{post.message}}</p> <br>
+						<div class="center">
+							<button class="btn indigo accent-3 waves-effect" style="width:100%;" ng-click="share(post.permalink_url)"><i class="fa fa-share"></i>&nbsp;&nbsp;&nbsp;&nbsp;Share this post for points!</button>
+						</div>
+					</div>
+				</div>	
+			</div>
+			<br><br>
+		</div>
+	</div>
+</div>
+
+<div ng-hide="showDashboard">
+	<div class="progress blue lighten-3">
+     	 <div class="indeterminate blue darken-1"></div>
+  	</div>
+</div>

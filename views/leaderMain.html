@@ -1,0 +1,25 @@
+<div ng-show="showMain" class="flow-text">
+	<h3 class="center">Main Leaderboard</h3>
+	<table class="highlight">
+		<thead>
+			<tr>
+				<th>Rank</th>
+				<th>Name</th>
+				<th>City</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="leader in leaders">
+				<td>{{leaders.indexOf(leader)+1}} </td>
+				<td>{{leader.name}} </td>
+				<td>{{leader.city}} </td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<div class="well" ng-hide="showMain">
+	<div class="progress blue lighten-3">
+    	<div class="indeterminate blue darken-1"></div>
+	</div>
+</div>

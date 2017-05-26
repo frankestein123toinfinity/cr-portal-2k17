@@ -1,0 +1,387 @@
+<header>
+  <div class="navbar-fixed text-flow" style="font-size: 20px">
+
+    <!-- smaller nav for Mobiles-->
+    <nav id="smallerNav" class="blue darken-2">
+      <div class="nav-wrapper">
+
+            <a href="http://moodi.org" target="_blank" class="brand-logo">&nbsp;<img src="/images/favicon.ico" alt="">&nbsp;&nbsp;Mood Indigo</a>
+
+            <div class="right">
+                <a data-constrainwidth="false" data-hover="true" href="#" class="dropdown-button" dropdown data-activates="profile-menu">
+                  Profile <!--Editing Later with Name from API-->
+                </a>&nbsp;&nbsp;
+                <ul class="dropdown-content" id="profile-menu" style="width: 200px">
+                    <li><a class="blue-text" ng-click="updateDetails()" href="#"><i class="fa fa-pencil"></i>&nbsp;Update details</a></li>
+                    <li><a class="blue-text" href="#" ng-click="logout()"><i class="fa fa-sign-out"></i>&nbsp;Logout</a></li> 
+                </ul>
+            </div>
+
+            <div class="left">
+            <!-- constrainwidth = false makes the dropdown width nice -->
+                <a data-constrainwidth="false" data-hover="true" href="#" class="dropdown-button" dropdown data-activates="menu">
+                  <i class="fa fa-bars fa-2x"></i>
+                </a>&nbsp;&nbsp;&nbsp;
+                <ul class="dropdown-content" id="menu" style="width: 200px">
+                    <li><a class="blue-text" href="/home/user"><i class="fa fa-home" class="blue-text"></i>&nbsp;Home</a></li>
+                    <li><a class="blue-text" href="/home/guidelines"><i class="fa fa-info-circle"></i>&nbsp;Guidelines</a></li>
+                    <li><a class="blue-text" href="/home/winners"><i class="fa fa-star"></i>&nbsp;Winners</a></li>
+                    <li><a class="blue-text" href="/home/leaderboard"><i class="fa fa-trophy"></i>&nbsp;Leaderboard</a></li>
+                    <li><a class="blue-text" data-constrainwidth="false" data-hover="true" href="#" class="dropdown-button" dropdown data-activates="menu-ideas_mobile"><i class="fa fa-lightbulb-o"></i>&nbsp;Give an Idea</a>
+                      <div><ul class="dropdown-content" id="menu-ideas_mobile" style="width: 150px">
+                        <li><a class="blue-text" href="/home/ideas/something1">&nbsp;Something1</a></li>
+                        <li><a class="blue-text" href="/home/ideas/something2">&nbsp;Something2</a></li>
+                        <li><a class="blue-text" href="/home/ideas/something3">&nbsp;Something3</a></li>
+                        <li><a class="blue-text" href="/home/ideas/something4">&nbsp;Something4</a></li>
+                        <li><a class="blue-text" href="/home/ideas/something5">&nbsp;Something5</a></li>
+                      </ul></div></li>
+                    <li><a class="blue-text" href="/home/venue"><i class="fa fa-map-marker"></i>&nbsp;Suggest a Venue!</a></li>
+                    <li><a class="blue-text" href="/home/contact"><i class="fa fa-phone"></i>&nbsp;Contact</a></li>
+                </ul>
+            </div>
+            
+      </div>
+      
+    </nav>
+    <script>
+    $.get("https://moodi.org/api/city",function(data){
+      console.log(data);
+      var city=data.data;
+      for(var i=0;i<city.length;i++)
+      {
+        $('#city').append('<option VALUE='+city[i].city_id+'>'+city[i].city_name+'</option>')
+      }
+    });
+    function getCollege(id){
+      $.post("https://moodi.org/api/college",{city:id},function(data){
+        console.log(data);
+        var college=data.data;
+        for(var i=0;i<college.length;i++)
+        {
+          $('#college').append('<option VALUE='+college[i].clg_id+'>'+college[i].clg_name+'</option>')
+        }
+    }
+    )};
+      </script>
+
+    <!-- bigger nav -->
+    <nav id="biggerNav" class="blue darken-2">
+
+      <div class="nav-wrapper">
+            <a href="http://moodi.org" target="_blank" class="brand-logo">&nbsp;<img src="/images/favicon.ico" alt="MI-Logo">&nbsp;&nbsp;Mood Indigo</a>
+            <ul class="right" id="nav-mobile">
+              <li><a href="/home/user"><i class="fa fa-home" ></i>&nbsp;Home</a></li>
+              <li><a href="/home/guidelines"><i class="fa fa-info-circle"></i>&nbsp;Guidelines</a></li>
+              <li><a href="/home/winners"><i class="fa fa-star"></i>&nbsp;Winners</a></li>
+              <li><a href="/home/leaderboard"><i class="fa fa-trophy"></i>&nbsp;Leaderboard</a></li>
+              <li><a href="#" class="dropdown-button" dropdown data-activates="menu-ideas"><i class="fa fa-lightbulb-o"></i>&nbsp;Give an Idea</a>
+                  <ul class="dropdown-content" id="menu-ideas">
+                    <li><a class="blue-text" href="/home/ideas/something1">Something1</a></li>
+                    <li><a class="blue-text" href="/home/ideas/something2">Something2</a></li>
+                    <li><a class="blue-text" href="/home/ideas/something3">Something3</a></li>
+                    <li><a class="blue-text" href="/home/ideas/something4">Something4</a></li>
+                    <li><a class="blue-text" href="/home/ideas/something5">Something5</a></li>
+                  </ul>
+              </li>
+               <li><a href="/home/venue"><i class="fa fa-map-marker"></i>&nbsp;Suggest a Venue!</a></li>
+               <li><a ng-click="updateDetails()" href="#"><i class="fa fa-pencil"></i>&nbsp;Update details</a></li>
+               <li><a href="/home/contact"><i class="fa fa-phone"></i>&nbsp;Contact</a></li> 
+               <li><a href="#" ng-click="logout()"><i class="fa fa-sign-out"></i>&nbsp;Logout</a></li> 
+            </ul>
+      </div>
+
+    </nav>
+  </div>
+  <!-- navbar  -->
+  <ul class="side-nav fixed blue lighten-5" style="z-index: 1; width:25%">     <!-- add side content here -->
+  <br>
+  <br>
+  <br>
+  <br>
+  <div class="container">
+    <div ng-show="showLoading">
+      <div class="progress blue lighten-3">
+        <div class="indeterminate blue darken-1"></div>
+      </div>
+    </div>
+  </div>
+  <!-- progress bar -->
+  <div ng-show="showPanel" class="center">
+    <!-- Notification button -->
+    <a class="btn blue white-text hoverable waves-effect" style="width: 93.5%" ng-click="openInfo()">Notifications</a>
+    <!-- card showing user details -->
+    <div class="row">
+    <h3 class="flow-text center">User details</h3>
+      <div class="col s2"><br></div>
+      <div class="col s8">
+        <div class="card hoverable z-depth-1">
+          <div class="card-image">
+            <img ng-src="{{mainuser.profileurl}}" alt="Profile" class="responsive-img">
+          </div>
+          <div class="card-content center">
+            <h6 class="flow-text">{{mainuser.name}}</h6>
+          </div>
+        </div>
+      </div>
+      <div class="col s2"></div>
+    </div>
+
+    <h4 class="center flow-text"><b>Points</b></h4>
+    <div class="row">
+      <div class="col s1"><br></div>
+      <div class="col s10">
+            <div class="card hoverable z-depth-1">
+              
+              <div class="card-title">
+                <h5 class="center flow-text" style="padding-top: 15px">Fortnightly stats</h5>
+              </div>
+
+              <div class="card-content">
+
+                <div class="row">
+                  <div class="col s12 center">
+                    <span style="width: 100%" tooltipped data-delay="50" data-position="right" data-tooltip="Like count ({{mainuser.likes}})" class="btn center blue"><i class="fa fa-thumbs-up"></i>&nbsp;{{mainuser.likes}}</span>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col s12 center">
+                    <span style="width: 100%" tooltipped data-delay="50" data-position="right" data-tooltip="Share count ({{mainuser.shares.length}})" class="btn center blue"><i class="fa fa-share"></i>&nbsp;{{mainuser.shares.length}}</span>
+                  </div>
+                </div>
+                
+                <div class="row">
+                  <div class="col s12 center">
+                    <span style="width: 100%" tooltipped data-delay="50" data-position="right" data-tooltip="Ideas score ({{mainuser.ideasScore}})" class="btn center blue"><i class="fa fa-lightbulb-o"></i>&nbsp;{{mainuser.ideasScore}} </span>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col s12 center">
+                    <span style="width: 100%" tooltipped data-delay="50" data-position="right" data-tooltip="Total score ({{mainuser.score}})" class="btn center blue"><i class="fa fa-star"></i>&nbsp;{{mainuser.score}}</span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+      </div>
+      <div class="col s1"><br></div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col s1"><br></div>
+      <div class="col s10">
+            <div class="card hoverable z-depth-1">
+              <div class="card-title">
+                <h5 class="flow-text center" style="padding-top: 15px">Total stats</h5>        
+              </div>
+              <div class="card-content">
+                <div class="row">
+                  <div class="col s12 center">
+                    <span style="width: 100%" tooltipped data-delay="50" data-position="right" data-tooltip="Like count ({{mainuser.totalLikes}}) " class="btn center blue"><i class="fa fa-thumbs-up"></i>&nbsp;{{mainuser.totalLikes}}</span>
+                  </div>
+                 </div>
+                <div class="row">
+                  <div class="col s12 center">
+                    <span style="width: 100%" tooltipped data-delay="50" data-position="right" data-tooltip="Share count ({{mainuser.totalShares.length}})" class="btn center blue"><i class="fa fa-share"></i>&nbsp;{{mainuser.totalShares.length}}</span>
+                  </div>
+                </div>
+                
+                <div class="row">
+                  <div class="col s12 center">
+                    <span style="width: 100%" tooltipped data-delay="50" data-position="right" data-tooltip="Ideas score ({{mainuser.totalIdeasScore}})" class="btn center blue"><i class="fa fa-lightbulb-o"></i>&nbsp;{{mainuser.totalIdeasScore}} </span>
+                  </div>
+                </div>
+                <div class="row"> 
+                  <div class="col s12 center">
+                    <span style="width: 100%" tooltipped data-delay="50" data-position="right" data-tooltip="Total score ({{mainuser.totalScore}})" class="btn center blue"><i class="fa fa-star"></i>&nbsp;{{mainuser.totalScore}}</span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+      </div>
+      <div class="col s1"><br></div>
+    </div>
+    <!-- end of card -->
+
+  </div>
+  <!-- end of ng-show thing -->
+
+  <div id="fb-root"></div>
+  <script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6&appId=333400450156052";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+  </script><br>
+  <!-- fb sdk root -->
+
+  </ul>
+  <!-- end of sidenav -->
+</header>
+<!-- end of header -->
+
+<main>
+  <!-- facebook page like  -->
+  <div class="row">
+    <div class="col m3 s12" style="z-index: -1">
+        <div id="biggerScreen"><br></div>
+
+        <div id="smallerScreen">
+              <div class="progress" ng-show="showLoading">
+                    <div class="progress blue lighten-3">
+                        <div class="indeterminate blue darken-1"></div>
+                    </div>
+              </div>
+              <div ng-show="showPanel">
+                    <div class="card center">
+                        <h5>My profile</h5>
+                        <div class="card">
+                            <div class="card-image">
+                                <img ng-src="{{mainuser.profileurl}}" alt="profile">
+                            </div>
+                            <div class="card-content">
+                                {{mainuser.name}} <br> 
+                            </div>
+                        </div>        
+                    </div>
+                    <div class="center">
+                        <b>Points</b> <br>
+                    </div>        
+                    <div class="card center">
+                        <div class="card-title">
+                            Fortnightly stats:
+                        </div>
+                        <div class="card-content">
+                            Likes: {{mainuser.likes}} <br>
+                            Shares: {{mainuser.shares.length}} <br>
+                            Ideas Score: {{mainuser.ideasScore}} <br>
+                            Total Score: {{mainuser.score}} <br>
+                        </div>
+                    </div>
+                    <div class="card center">
+                        <div class="card-title">
+                            Total stats:
+                        </div>
+                        <div class="card-content">
+                            Likes: {{mainuser.totalLikes}} <br>
+                            Shares: {{mainuser.totalShares.length}} <br>
+                            Ideas Score: {{mainuser.totalIdeasScore}} <br>
+                            Total Score: {{mainuser.totalScore}} <br>
+                        </div>
+                    </div>
+              </div>
+        </div>
+    </div>
+
+    <div class="col m9 s12 center">
+        <div class="center container card-panel hoverable" style="width: 100%">
+          <h5>Like the Mood Indigo Facebook page to get daily updates!</h5>
+          <div class="fb-like" data-href="https://www.facebook.com/iitb.moodindigo/?fref=ts" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div> <br>
+        </div>
+        <!-- fb like -->
+        <div class="container" ng-show="showRegister">
+              <form novalidate name="userDetails">
+              <h2>Please register yourself here: </h2>
+
+                <input-field>
+                  <label>Name</label>
+                  <input type="text" id="name" name="name" placeholder="{{mainuser.name}}" ng-model="mainuser.name" disabled="disabled" required> <br>
+                </input-field>
+               <br>
+                <input-field>
+                  <label for="">Email</label>
+                  <input type="email" id="email" name="email" ng-model="mainuser.email" > <br>
+                </input-field>
+                <br>
+                <input-field>
+                  <label>City</label>
+                  <input type="text" id="city" name="city" ng-model="mainuser.city" onChange="getCollege(this.value)" required> <br>
+                </input-field>
+                <br>
+                <input-field>
+                  <label>College</label>
+                  <input type="text" id="college" name="college" ng-model="mainuser.college" required> <br>
+                </input-field>      
+                <br>
+                <input-field>
+                  <label for="">Phone</label>
+                  <input type="text" id="phone" name="phone" ng-model="mainuser.phone"> <br>
+                </input-field>
+                  <br>
+                <input-field>
+                  <input type="text" name="whatsapp" ng-model="mainuser.whatsapp" required> <br>
+                  <label>Whatsapp number</label>
+                </input-field>
+                <br>
+                <input-field>
+                  <input type="text" name="address" ng-model="mainuser.address" required> <br>
+                  <label for="">Postal address</label>
+                </input-field>
+                <br>
+                <input-field>
+                    <input type="text" name="zipcode" ng-model="mainuser.zipcode" required> <br>
+                    <label for="">Zip code</label>
+                </input-field>
+                <br>
+                <input-field>
+                  <select id="pass" ng-model="mainuser.year" required material-select watch>
+                    <option value="First" selected>First</option>
+                    <option value="Second">Second</option>
+                    <option value="Third">Third</option>
+                    <option value="Fourth">Fourth</option>
+                    <option value="Fifth">Fifth</option>
+                  </select>  
+                  <label>Year of study</label>
+                </input-field>
+                <br>
+                <div class="browser-default">
+                     <input type="checkbox" id="tnc" ng-model="acceptTnC" name="tnc" required> 
+                     <label for="tnc">I accept the Terms and Conditions!</label> 
+                 </div>
+                <br><br>
+              <button ng-class="{disabled : userDetails.$invalid||invalidPhone()||invalidWhatsapp() }" ng-click="saveDetails()" class="btn indigo accent-4 hoverable" ng-disabled="userDetails.$invalid || invalidPhone() || invalidWhatsapp()"><i class="fa fa-pencil"></i>&nbsp;&nbsp;&nbsp;Enter details</button>
+              </form>
+              <br>
+        </div>
+        
+        <div class="container">
+          <div ui-view></div>
+        </div>
+    </div>
+  <!--Facebook Page Like button-->
+
+  <!-- if the font is too big, remove the flow-text class from this modal -->
+  <div class="modal" id="info">
+    <div class="modal-header center" style="padding-top: 15px">
+      <h3 class="flow-text"><b>Notifications</b></h3>
+    </div>
+    <div class="modal-content flow-text">
+      <h4 ng-hide="notifications.length">No notifications!</h4>
+      <ol ng-show="notifications.length">
+        <li ng-repeat="notification in notifications">{{notification.text}}</li>
+      </ol>
+    </div>
+    <div class="modal-footer">
+      <a href="#" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+    </div>
+  </div>
+
+</main>
+<footer class="page-footer white"> 
+    <div class="row">
+      <div class="col m5"><br></div>
+      <div class="col m7 s12 flow-text">
+          <div class="container center card-panel hoverable">
+                Follow us:&nbsp;&nbsp;&nbsp; <a href="https://facebook.com/iitb.moodindigo/" target="_blank"><i class="fa fa-facebook fa-lg " style="color:#3b5998;"></i></a>
+                &nbsp;&nbsp;&nbsp; <a href="https://twitter.com/iitb_moodi" target="_blank"><i class="fa fa-twitter fa-lg" style="color: #00aced;"></i></a> 
+                &nbsp;&nbsp;&nbsp; <a href="https://plus.google.com/+MoodiOrgIITB/videos" target="_blank"><i class="fa fa-google-plus fa-lg" style="color: #d34836;"></i></a>
+                &nbsp;&nbsp;&nbsp; <a href="https://www.youtube.com/user/iitbmoodindigo" target="_blank"><i class="fa fa-youtube fa-lg" style="color:#b31217;"></i></a>
+          </div>
+      </div>
+    </div>
+</footer>

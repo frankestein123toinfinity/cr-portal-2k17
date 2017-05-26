@@ -1,0 +1,41 @@
+a {
+  color: #267399;
+}
+
+nav{
+	z-index: 3; 
+}
+
+/*body{
+	background-image: url('/images/CRP.png');
+	background-repeat: no-repeat;
+	background-size: 100%;
+}*/
+
+
+@media (max-width: 1300px) {
+	#biggerNav{
+		display: none;
+	}
+}
+
+@media (min-width: 1300px) {
+	#smallerNav{
+		display: none;
+	}
+}
+
+@media (max-width: 992px) {
+	#biggerScreen{
+		display: none;
+	}
+}
+
+@media (min-width: 992px) {
+	#smallerScreen{
+		display: none;
+	}
+}
+.try1{
+	display: inline;
+}
