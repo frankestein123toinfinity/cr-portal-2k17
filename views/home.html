@@ -5,41 +5,62 @@
     <nav id="smallerNav" class="blue darken-2">
       <div class="nav-wrapper">
 
+            <script>
+              $('.button-collapse-left').sideNav({
+                  menuWidth: 300, // Default is 240
+                  closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
+                }
+              );
+              $('.collapsible').collapsible(); 
+              $('.button-collapse-right').sideNav({
+                  menuWidth: 300,
+                  closeOnClick: true,
+                  edge: "right"
+              });
+            </script>
+
             <a href="http://moodi.org" target="_blank" class="brand-logo">&nbsp;<img src="/images/favicon.ico" alt="">&nbsp;&nbsp;Mood Indigo</a>
 
             <div class="right">
-                <a data-constrainwidth="false" data-hover="true" href="#" class="dropdown-button" dropdown data-activates="profile-menu">
+                <a href="#" class="button-collapse-right" data-activates="profile-menu">
                   Profile <!--Editing Later with Name from API-->
                 </a>&nbsp;&nbsp;
-                <ul class="dropdown-content" id="profile-menu" style="width: 200px">
+                <ul id="profile-menu" class="side-nav" style="width: 200px">
                     <li><a class="blue-text" ng-click="updateDetails()" href="#"><i class="fa fa-pencil"></i>&nbsp;Update details</a></li>
                     <li><a class="blue-text" href="#" ng-click="logout()"><i class="fa fa-sign-out"></i>&nbsp;Logout</a></li> 
                 </ul>
             </div>
 
             <div class="left">
-            <!-- constrainwidth = false makes the dropdown width nice -->
-                <a data-constrainwidth="false" data-hover="true" href="#" class="dropdown-button" dropdown data-activates="menu">
-                  <i class="fa fa-bars fa-2x"></i>
-                </a>&nbsp;&nbsp;&nbsp;
-                <ul class="dropdown-content" id="menu" style="width: 200px">
-                    <li><a class="blue-text" href="/home/user"><i class="fa fa-home" class="blue-text"></i>&nbsp;Home</a></li>
-                    <li><a class="blue-text" href="/home/guidelines"><i class="fa fa-info-circle"></i>&nbsp;Guidelines</a></li>
-                    <li><a class="blue-text" href="/home/winners"><i class="fa fa-star"></i>&nbsp;Winners</a></li>
-                    <li><a class="blue-text" href="/home/leaderboard"><i class="fa fa-trophy"></i>&nbsp;Leaderboard</a></li>
-                    <li><a class="blue-text" data-constrainwidth="false" data-hover="true" href="#" class="dropdown-button" dropdown data-activates="menu-ideas_mobile"><i class="fa fa-lightbulb-o"></i>&nbsp;Give an Idea</a>
-                      <div><ul class="dropdown-content" id="menu-ideas_mobile" style="width: 150px">
-                        <li><a class="blue-text" href="/home/ideas/something1">&nbsp;Something1</a></li>
-                        <li><a class="blue-text" href="/home/ideas/something2">&nbsp;Something2</a></li>
-                        <li><a class="blue-text" href="/home/ideas/something3">&nbsp;Something3</a></li>
-                        <li><a class="blue-text" href="/home/ideas/something4">&nbsp;Something4</a></li>
-                        <li><a class="blue-text" href="/home/ideas/something5">&nbsp;Something5</a></li>
-                      </ul></div></li>
-                    <li><a class="blue-text" href="/home/venue"><i class="fa fa-map-marker"></i>&nbsp;Suggest a Venue!</a></li>
-                    <li><a class="blue-text" href="/home/contact"><i class="fa fa-phone"></i>&nbsp;Contact</a></li>
-                </ul>
-            </div>
-            
+            <!-- constrainwidth = false makes the dropdown width nice 
+            Might employ side-nav here--> 
+              <a href="#" data-activates="menu" class="button-collapse-left">
+                <i class="fa fa-bars fa-2x">&nbsp;&nbsp;&nbsp;</i>
+              </a>
+              <ul id="menu" class="side-nav fixed">
+                <li><a class="blue-text" href="/home/user"><i class="fa fa-home"></i>&nbsp;Home</a></li>
+                <li><a class="blue-text" href="/home/guidelines"><i class="fa fa-info-circle"></i>&nbsp;Guidelines</a></li>
+                <li class="no-padding">
+                  <ul class="collapsible collapsible-accordion">
+                    <li>
+                      <a class="collapsible-header waves-effect waves-teal blue-text">&nbsp;Give an Idea<i class="mdi-navigation-arrow-drop-down fa fa-lightbulb-o"></i></a>
+                        <div class="collapsible-body">
+                          <ul>
+                            <li><a class="blue-text" href="/home/ideas/pronites">Pronites</a></li>
+                            <li><a class="blue-text" href="/home/ideas/hospi">Hospitality</a></li>
+                            <li><a class="blue-text" href="/home/ideas/informals">Informals</a></li>
+                            <li><a class="blue-text" href="/home/ideas/misc">Miscellaneous</a></li>
+                          </ul>
+                        </div>
+                    </li>
+                  </ul>
+                </li>
+                <li><a class="blue-text" href="/home/winners"><i class="fa fa-star"></i>&nbsp;Winners</a></li>
+                <li><a class="blue-text" href="/home/leaderboard"><i class="fa fa-trophy"></i>&nbsp;Leaderboard</a></li>
+                <li><a class="blue-text" href="/home/venue"><i class="fa fa-map-marker"></i>&nbsp;Suggest a Venue!</a></li>
+                <li><a class="blue-text" href="/home/contact"><i class="fa fa-phone"></i>&nbsp;Contact</a></li>
+              </ul>
+            </div>      
       </div>
       
     </nav>
@@ -76,11 +97,10 @@
               <li><a href="/home/leaderboard"><i class="fa fa-trophy"></i>&nbsp;Leaderboard</a></li>
               <li><a href="#" class="dropdown-button" dropdown data-activates="menu-ideas"><i class="fa fa-lightbulb-o"></i>&nbsp;Give an Idea</a>
                   <ul class="dropdown-content" id="menu-ideas">
-                    <li><a class="blue-text" href="/home/ideas/something1">Something1</a></li>
-                    <li><a class="blue-text" href="/home/ideas/something2">Something2</a></li>
-                    <li><a class="blue-text" href="/home/ideas/something3">Something3</a></li>
-                    <li><a class="blue-text" href="/home/ideas/something4">Something4</a></li>
-                    <li><a class="blue-text" href="/home/ideas/something5">Something5</a></li>
+                    <li><a class="blue-text" href="/home/ideas/pronites">Pronites</a></li>
+                    <li><a class="blue-text" href="/home/ideas/hospi">Hospitality</a></li>
+                    <li><a class="blue-text" href="/home/ideas/informals">Informals</a></li>
+                    <li><a class="blue-text" href="/home/ideas/misc">Miscellaneous</a></li>
                   </ul>
               </li>
                <li><a href="/home/venue"><i class="fa fa-map-marker"></i>&nbsp;Suggest a Venue!</a></li>

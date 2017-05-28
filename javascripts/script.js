@@ -71,6 +71,9 @@ app.config(['$stateProvider','$urlRouterProvider','$locationProvider','FacebookP
 		templateUrl:'views/venue.html',
 		controller:'venueControl'
 	})
+	.state('home.ideas',{
+		templateUrl:'ideas-options.html'
+	})
 	.state('home.something1',{
 		url:'/ideas/something1',
 		templateUrl:'views/giveanidea.html',
@@ -97,7 +100,7 @@ app.config(['$stateProvider','$urlRouterProvider','$locationProvider','FacebookP
 		controller:'ideasControl'
 	})
 
-	//$locationProvider.html5Mode(true);
+	$locationProvider.html5Mode(true);
 }]);
 
 app.controller('regPortalControl', ['$scope', function($scope){
