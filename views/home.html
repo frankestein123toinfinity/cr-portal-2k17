@@ -37,13 +37,14 @@
               <a href="#" data-activates="menu" class="button-collapse-left">
                 <i class="fa fa-bars fa-2x">&nbsp;&nbsp;&nbsp;</i>
               </a>
+            </div>
               <ul id="menu" class="side-nav fixed">
                 <li><a class="blue-text" href="/home/user"><i class="fa fa-home"></i>&nbsp;Home</a></li>
                 <li><a class="blue-text" href="/home/guidelines"><i class="fa fa-info-circle"></i>&nbsp;Guidelines</a></li>
                 <li class="no-padding">
                   <ul class="collapsible collapsible-accordion">
                     <li>
-                      <a class="collapsible-header waves-effect waves-teal blue-text">&nbsp;Give an Idea<i class="mdi-navigation-arrow-drop-down fa fa-lightbulb-o"></i></a>
+                      <a class="collapsible-header blue-text">&nbsp;Give an Idea<i class="mdi-navigation-arrow-drop-down fa fa-lightbulb-o"></i></a>
                         <div class="collapsible-body">
                           <ul>
                             <li><a class="blue-text" href="/home/ideas/pronites">Pronites</a></li>
@@ -59,11 +60,10 @@
                 <li><a class="blue-text" href="/home/leaderboard"><i class="fa fa-trophy"></i>&nbsp;Leaderboard</a></li>
                 <li><a class="blue-text" href="/home/venue"><i class="fa fa-map-marker"></i>&nbsp;Suggest a Venue!</a></li>
                 <li><a class="blue-text" href="/home/contact"><i class="fa fa-phone"></i>&nbsp;Contact</a></li>
-              </ul>
-            </div>      
+              </ul>      
       </div>
-      
     </nav>
+
     <script>
     $.get("https://moodi.org/api/city",function(data){
       console.log(data);
@@ -95,7 +95,7 @@
               <li><a href="/home/guidelines"><i class="fa fa-info-circle"></i>&nbsp;Guidelines</a></li>
               <li><a href="/home/winners"><i class="fa fa-star"></i>&nbsp;Winners</a></li>
               <li><a href="/home/leaderboard"><i class="fa fa-trophy"></i>&nbsp;Leaderboard</a></li>
-              <li><a href="#" class="dropdown-button" dropdown data-activates="menu-ideas"><i class="fa fa-lightbulb-o"></i>&nbsp;Give an Idea</a>
+              <li><a href="#" class="dropdown-button" dropdown data-activates="menu-ideas" data-beloworigin="true" data-constrainwidth ="false"><i class="fa fa-lightbulb-o"></i>&nbsp;Give an Idea</a>
                   <ul class="dropdown-content" id="menu-ideas">
                     <li><a class="blue-text" href="/home/ideas/pronites">Pronites</a></li>
                     <li><a class="blue-text" href="/home/ideas/hospi">Hospitality</a></li>
@@ -109,8 +109,8 @@
                <li><a href="#" ng-click="logout()"><i class="fa fa-sign-out"></i>&nbsp;Logout</a></li> 
             </ul>
       </div>
-
     </nav>
+
   </div>
   <!-- navbar  -->
   <ul class="side-nav fixed blue lighten-5" style="z-index: 1; width:25%">     <!-- add side content here -->
